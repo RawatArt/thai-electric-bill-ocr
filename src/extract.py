@@ -37,8 +37,13 @@ Fill EVERY field of the schema. Where to look on the bill:
   Never use a meter reading here. If the box is empty or hidden (often blurred or
   covered for privacy), null.
 - billing_period: the bill month (ประจำเดือน), often printed next to ค่าพลังงานไฟฟ้า.
-- units_kwh: the จำนวนหน่วย (kWh) box. NOT the meter readings
-  (เลขอ่านครั้งหลัง / เลขอ่านครั้งก่อน) and NOT the usage history.
+- units_kwh: near the top there is a meter row with these column headers, left to
+  right: วันที่จดเลขอ่าน (Meter Reading Date) | เลขอ่านครั้งหลัง (Last Meter Reading) |
+  เลขอ่านครั้งก่อน (Previous Meter Reading) | จำนวนหน่วย (kWh) | ตัวคูณ (Multiplier).
+  units_kwh is the number printed UNDER the จำนวนหน่วย (kWh) header. It is always
+  printed when that row is visible, so do not return null for it. Check: it equals
+  เลขอ่านครั้งหลัง minus เลขอ่านครั้งก่อน. NOT the meter readings themselves and
+  NOT the usage history table.
 - energy_charge: the baht amount on the ค่าพลังงานไฟฟ้า line.
 - ft_charge: the baht amount on the ค่าไฟฟ้าผันแปร (Ft) line, from the amount column on
   the right. NOT the rate per unit (บาท/หน่วย) printed in the middle of that line.

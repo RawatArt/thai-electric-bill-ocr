@@ -4,6 +4,10 @@ Turn a photo of a Thai electricity bill (ใบแจ้งค่าไฟฟ้
 structured data — **running entirely on your own machine**. No cloud, no third-party
 API. Powered by a local vision LLM (Qwen2.5-VL in LM Studio).
 
+![Before: blurred photo of a real MEA bill. After: the extracted JSON, with two wrong fields caught by the review check](docs/demo.png)
+
+*A real run on my own bill (personal info blurred; input: `docs/demo-bill-blurred.jpg`).*
+
 ## Problem
 
 Small shops, freelancers and back-office staff still key bills into spreadsheets by
@@ -90,14 +94,17 @@ This is an honest baseline, not a final score.
 | Field | Correct |
 |---|---|
 | provider | 4/4 |
-| customer_id, due_date | 3/4 |
-| energy_charge, ft_charge, total_amount | 2/4 |
-| billing_period, units_kwh, service_charge, vat | 1/4 |
-| **Overall** | **20/40 fields (50%)** |
+| customer_id, units_kwh, due_date | 3/4 |
+| energy_charge, ft_charge, service_charge, vat, total_amount | 2/4 |
+| billing_period | 1/4 |
+| **Overall** | **24/40 fields (60%)** |
 
-- Time per bill: **~40 s** on CPU (vs ~2 min by hand).
-- The scanned bill: 9/10. Phone photos with last month's receipt in frame: 4/10;
-  the same photos cropped to just the bill: 6/10 and 8/10.
+- Time per bill: **~40–60 s** on CPU (vs ~2 min by hand).
+- Prompt iteration example: `units_kwh` came back null on 3 of 4 bills. Describing
+  the meter row column by column (and that units = last − previous reading) took it
+  from 1/4 to 3/4 and the overall score from 50% to 60%.
+- The scanned bill: 9/10. Phone photos with last month's receipt in frame: 3/10 and
+  5/10; cropped to just the bill (as in the demo above): 8/10.
 - **The `needs_review` check flagged every bill whose amounts were wrong**, with no
   false alarm on a correct bill — wrong numbers don't silently reach the CSV.
 

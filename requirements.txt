@@ -1,0 +1,5 @@
+openai>=1.0  # client for LM Studio's OpenAI-compatible local server (no cloud calls)
+pydantic>=2.0
+# optional — only for the Google Sheet export (Layer 2)
+gspread>=6.0
+google-auth>=2.0

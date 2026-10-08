@@ -1,0 +1,15 @@
+{
+  "_comment": "Copy to labels.json and add one entry per photo in samples/. Values are what is printed on the bill (dates converted to ค.ศ.); null = not printed or hidden.",
+  "bill1.jpg": {
+    "provider": "MEA",
+    "customer_id": "012345678",
+    "billing_period": "2026-09",
+    "units_kwh": 318,
+    "energy_charge": 1090.69,
+    "ft_charge": 51.61,
+    "service_charge": 24.62,
+    "vat": 81.68,
+    "total_amount": 1248.60,
+    "due_date": "2026-10-02"
+  }
+}

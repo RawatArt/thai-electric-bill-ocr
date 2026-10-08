@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+credentials.json
+output/
+# keep real bill photos private; commit only blurred examples you choose
+samples/*.jpg
+samples/*.jpeg
+samples/*.png
+# ground truth for real bills contains account numbers; labels.example.json is committed
+samples/labels.json
+# reference images (e.g. infographics) are not ours to publish
+samples/reference/
